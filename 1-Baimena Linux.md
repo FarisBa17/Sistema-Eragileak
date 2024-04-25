@@ -42,7 +42,7 @@ Linux-en baimen motak eta `chmod` aginduaren erabilera hainbat motatan azaltzen 
 
 `chmod` aginduaren erabilera hauen laguntzarekin, Linux sistema eragileetan baimenak nola kudeatu ikasten da, fitxategiak eta direktorioak seguruak eta egokiak mantentzeko.
 
-Adibidez, jabeari (user) exekuzio baimena horrela eman ahal diegu
+Adibidez, jabeari (user) exekuzio baimena horrela eman ahal izango diogu.
 ```bash
 chmod u+x froga.txt
 ```
@@ -59,14 +59,14 @@ chmod o-r froga.txt
 
 ### Baimenak modu oktalea
 
-- 0 = 000 = --- = baimenarik gabe.
-- 1 = 001 = --x = exekuzioa.
-- 2 = 010 = -w- = idazteko.
-- 3 = 011 = -wx = idazteko eta exekutatzeko baimena.
-- 4 = 100 = r- = irakurtzeko baimena.
-- 5 = 101 = r-w = irakurtzeko eta exekutatzeko baimena.
-- 6 = 110 = rx- = irakurtzeko eta idazteko baimena.
-- 7 = 111 = rwx = baimena guztiak.
+- 0 = 000 = --- = Baimenarik gabe.
+- 1 = 001 = --x = Exekuzioa.
+- 2 = 010 = -w- = Idazteko.
+- 3 = 011 = -wx = Idazteko eta exekutatzeko baimena.
+- 4 = 100 = r- = Irakurtzeko baimena.
+- 5 = 101 = r-w = Irakurtzeko eta exekutatzeko baimena.
+- 6 = 110 = rx- = Irakurtzeko eta idazteko baimena.
+- 7 = 111 = rwx = Baimena guztiak.
 
 Adibidez baimen guztiak kentzeko.
 ```bash
