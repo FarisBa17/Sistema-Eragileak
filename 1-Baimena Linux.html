@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Baimenak Linux</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="baimenak-linux">Baimenak Linux</h1>
+<ul>
+<li><a href="#baimenak-linux">Baimenak Linux</a>
+<ul>
+<li><a href="#fitxategi-eta-direktorioen-baimenak">Fitxategi eta direktorioen baimenak</a>
+<ul>
+<li><a href="#baimen-taldeak">Baimen taldeak</a></li>
+<li><a href="#baimenak-esleitzen-modu-sinbolikoan">Baimenak esleitzen modu sinbolikoan</a></li>
+<li><a href="#baimenak-modu-oktalea">Baimenak modu oktalea</a></li>
+</ul>
+</li>
+<li><a href="#sticky-bit-baimena">Sticky bit baimena</a></li>
+<li><a href="#suid-eta-guid-baimenak">SUID eta GUID baimenak</a>
+<ul>
+<li><a href="#suid">SUID</a></li>
+</ul>
+</li>
+<li><a href="#ezaugarri-bereziak---lsattr-eta-chattr">Ezaugarri bereziak - lsattr eta chattr</a></li>
+</ul>
+</li>
+<li><a href="#ariketak">Ariketak</a>
+<ul>
+<li><a href="#ariketa-1">Ariketa 1</a></li>
+<li><a href="#ariketa-2">Ariketa 2</a></li>
+<li><a href="#ariketa-3">Ariketa 3</a></li>
+<li><a href="#ariketa-4">Ariketa 4</a></li>
+<li><a href="#ariketa-5">Ariketa 5</a></li>
+<li><a href="#ariketa-6">Ariketa 6</a></li>
+<li><a href="#ariketa-7">Ariketa 7</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="fitxategi-eta-direktorioen-baimenak">Fitxategi eta direktorioen baimenak</h2>
+<p>Fitxategi eta direktorioen baimenak hurrengo aginduarekin ikusi ditzakegu.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">ls</span> -a
+</code></pre>
+<p><img src="image.png" alt="Aginduaren emaitza ls -a"></p>
+<h3 id="baimen-taldeak">Baimen taldeak</h3>
+<p><strong>- Jabea (user)</strong> : Fitxategi bat sortzen dugunean, sortzailea jabea izango da defektuz.
+<strong>- Talde (group)</strong> : Fitxategi baten jabetza talde bati ere bai dagokio.
+<strong>- Besteak (other)</strong> : Jabeak edo taldekideak ez direnak.</p>
+<p><img src="image-1.png" alt="alt text"></p>
+<h3 id="baimenak-esleitzen-modu-sinbolikoan">Baimenak esleitzen modu sinbolikoan</h3>
+<p>Linux-en baimen motak eta <code>chmod</code> aginduaren erabilera hainbat motatan azaltzen dira. Hemen daude batzuk:</p>
+<ol>
+<li>
+<p><strong>Baimen motak:</strong> Linux-en, fitxategi edo direktorio bakoitzak hiru baimen mota izan ditzake: &quot;owner&quot; (jabea), &quot;group&quot; (taldea) eta &quot;others&quot; (besteak). Baimen hauek aldatu daitezke, erabiltzaileak eta taldeak fitxategi edo direktorioetan zer egin ahal izateko.</p>
+</li>
+<li>
+<p><strong><code>chmod</code> agindua:</strong> <code>chmod</code> agindua baimenak aldatzeko erabiltzen da. Agindu hau erabiltzean, hiru baimen moten balioak aldatu daitezke: &quot;read&quot; (irakurri), &quot;write&quot; (idatzi) eta &quot;execute&quot; (exekutatu).</p>
+</li>
+<li>
+<p><strong>Fitxategi eta direktorioen baimenak aldatzea:</strong> Adibidez, <code>chmod</code> agindua erabiliz, fitxategi bati exekutatzeko baimena eman dezakegu erabiltzaileari bakarrik (<code>chmod u+x fitxategia</code>), edo talde guztiei idazteko baimena kendu dezakegu (<code>chmod g-w fitxategia</code>).</p>
+</li>
+<li>
+<p><strong>Simbolo eta zenbaki notazioa:</strong> <code>chmod</code> agindua hiru hizkuntza notazioetan idaz daiteke: simbolikoa eta zenbakizkoa. Simbolikoak (&quot;r&quot;, &quot;w&quot;, &quot;x&quot;) irakurri, idatzi eta exekutatu baimenak adierazten ditu, eta &quot;u&quot; (erabiltzailea), &quot;g&quot; (taldea) eta &quot;o&quot; (besteak) erabiltzaile, talde edo besteak diren baimenak aldatzeko erabiltzen dira. Zenbakizko notazioak baimenak 3 bitetan adierazten ditu: &quot;read&quot; (4), &quot;write&quot; (2) eta &quot;execute&quot; (1).</p>
+</li>
+<li>
+<p><strong>Erabilienezko adibideak:</strong> <code>chmod 755 fitxategia</code> fitxategiari irakurri, idatzi eta exekutatzeko baimena ematen dio erabiltzaileari eta taldeari, eta exekutatzeko baimena besteei. <code>chmod u=rw,go=r fitxategia</code> erabiltzeko, fitxategia irakurri eta idatzi baimenak ematen zaizkie jabeak, eta beste guztiei irakurri baimena.</p>
+</li>
+</ol>
+<p><code>chmod</code> aginduaren erabilera hauen laguntzarekin, Linux sistema eragileetan baimenak nola kudeatu ikasten da, fitxategiak eta direktorioak seguruak eta egokiak mantentzeko.</p>
+<p>Adibidez, jabeari (user) exekuzio baimena horrela eman ahal izango diogu.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> u+x froga.txt
+</code></pre>
+<p>Horrela, taldeari eta besteei exekuzio eta idazteko baimenak emango dizkiegu.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> go+wx froga.txt
+</code></pre>
+<p>Besteei, irakurtzeko baimena horrela kendu ditzaiokegu.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> o-r froga.txt
+</code></pre>
+<h3 id="baimenak-modu-oktalea">Baimenak modu oktalea</h3>
+<ul>
+<li>0 = 000 = --- = Baimenarik gabe.</li>
+<li>1 = 001 = --x = Exekuzioa.</li>
+<li>2 = 010 = -w- = Idazteko.</li>
+<li>3 = 011 = -wx = Idazteko eta exekutatzeko baimena.</li>
+<li>4 = 100 = r- = Irakurtzeko baimena.</li>
+<li>5 = 101 = r-w = Irakurtzeko eta exekutatzeko baimena.</li>
+<li>6 = 110 = rx- = Irakurtzeko eta idazteko baimena.</li>
+<li>7 = 111 = rwx = Baimena guztiak.</li>
+</ul>
+<p>Adibidez baimen guztiak kentzeko.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> 000 froga.txt
+</code></pre>
+<p>Baimen guztiak gehitzeko.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> 777 froga.txt
+</code></pre>
+<p>Erabiltzaileari baimen guztiak emateko eta besteei edo taldekidei irakurtzeko eta exekuzio baimena emateko.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> 755 froga.txt
+</code></pre>
+<h2 id="sticky-bit-baimena">Sticky bit baimena</h2>
+<p>Sticky bita daukan fitxategia edo direktorioa bat bakarrik jabea edo rootek aldatu ahal dio izena edo ezabatu ahal du.</p>
+<p>Sticky bita gehitzeko.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> +t froga.txt
+</code></pre>
+<p><img src="image-9.png" alt="alt text"></p>
+<h2 id="suid-eta-guid-baimenak">SUID eta GUID baimenak</h2>
+<h3 id="suid">SUID</h3>
+<p>SUID aktibatuta dagoenean fitxategi hau exekutatzen duen erabiltzaileak sortzailearen baimenak izango ditu.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> u+s froga.txt
+</code></pre>
+<p>Sortu exekutable bat root bezala, hurrengo edukiarekin eta izena.</p>
+<p><a href="http://suidfroga.sh">suidfroga.sh</a></p>
+<pre><code class="language-bash"><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">id</span>
+<span class="hljs-built_in">echo</span> exeku 
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$EUID</span>
+</code></pre>
+<p>Baimenak esleituko dizkiogu fitxategiari.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> 755 suidfroga.sh
+</code></pre>
+<p>Ezarri SUID <a href="http://suidfroga.sh">suidfroga.sh</a> fitxategiari.</p>
+<pre><code class="language-bash"><span class="hljs-built_in">chmod</span> u+s
+</code></pre>
+<p>Alde batetik baimenak S x ed exekuzioa bezala idatzi.</p>
+<p>Erabiltzaileen baimentan S badago 4755</p>
+<p>Taldeen baimentan s badago 2755</p>
+<p>Sticki bita badago &quot;t&quot; 1755</p>
+<p>r-srwx--
+570-&gt; 4570</p>
+<p>r-rws---
+470-&gt; 2470</p>
+<p>r--rwx--t
+470-&gt; 1470</p>
+<p>r--rws--t
+470-&gt; 2470-&gt; 3470</p>
+<h2 id="ezaugarri-bereziak---lsattr-eta-chattr">Ezaugarri bereziak - lsattr eta chattr</h2>
+<p>Ezaugarri bereziak ikusteko <code>lsattr</code> agindua erabiliko dugu</p>
+<p>Ezaugarri bereziak aldatzeko <code>chattr</code> agindua erabiliko dugu</p>
+<p>Adibidez, i atributoaren fitxategi bat inmutable bilakatzen dugu. Hau esan nahi du, inork ezin duela aldatu, ez ezabatu, ez root-ek. Ezabatu nahi izatekotan, i atributua kendu beharko genioke lehenengo.</p>
+<pre><code class="language-bash">chattr +i froga.txt
+lsattr froga.txt
+</code></pre>
+<ul>
+<li><strong>u</strong> ezaugarriarekin fitxategi bat ezabatzen dugunean, datuak gordeta gelditzen dira eta bere berreskurapena ahalbidetzen du.</li>
+</ul>
+<pre><code class="language-bash">chattr +u froga,txt
+</code></pre>
+<ul>
+<li><strong>e</strong> ezaugarriarekin fitxategi bat ezabatzen denean, okupatzen zuen memoria zeroarekin berridazten da.</li>
+</ul>
+<pre><code class="language-bash">chattr +e froga.txt
+</code></pre>
+<ul>
+<li><strong>c</strong> ezaugarriarekin fitxategi bat konprimituta gordeko da.</li>
+</ul>
+<pre><code class="language-bash">chattr +c froga.txt
+</code></pre>
+<ul>
+<li>a ezaugarriarekin fitxategi bati bakarrik gehitu ahal zaizkio gauzak, hau da, ezin da aldatu aurretik zegoen ezer.</li>
+</ul>
+<pre><code class="language-bash">chattr +a froga.txt
+</code></pre>
+<h1 id="ariketak">Ariketak</h1>
+<h2 id="ariketa-1">Ariketa 1</h2>
+<p>lotu dagokion baimenarekin</p>
+<ul>
+<li>
+<p>462</p>
+</li>
+<li>
+<p>123</p>
+</li>
+<li>
+<p>711</p>
+</li>
+<li>
+<p>333</p>
+</li>
+<li>
+<p>161</p>
+</li>
+<li>
+<p>765</p>
+</li>
+<li>
+<p>567</p>
+</li>
+<li>
+<p>101</p>
+</li>
+<li>
+<p>162</p>
+</li>
+<li>
+<p>rwx--x--x</p>
+</li>
+<li>
+<p>--x-w--wx</p>
+</li>
+<li>
+<p>--x-----x</p>
+</li>
+<li>
+<p>-wx-wx-wx</p>
+</li>
+<li>
+<p>r-xrw-rwx</p>
+</li>
+<li>
+<p>rwxrw-r-x</p>
+</li>
+<li>
+<p>--xrw--w-</p>
+</li>
+<li>
+<p>r--rw--w-</p>
+</li>
+<li>
+<p>--xrw---x</p>
+</li>
+</ul>
+<p>-462=r--rw--w-
+-123=--x-w--wx
+-711=rwx--x--x
+-333=-wx-wx-wx
+-161=--xrw--w-
+-765=-rwxrw-r-x
+-567=r-xrw-rwx
+-101=--x-----x
+-162=--xrw--w-</p>
+<h2 id="ariketa-2">Ariketa 2</h2>
+<p>Zein da fitxategi honen baimenen baimena modu oktalean?
+![alt text]</p>
+<ul>
+<li>r--rw-r--=546</li>
+</ul>
+<h2 id="ariketa-3">Ariketa 3</h2>
+<p>Jarri hurrengo baimenak modu oktalean</p>
+<ul>
+<li>r--r-xrw-</li>
+<li>--xr-xr--</li>
+<li>r--------</li>
+<li>--------x</li>
+<li>rwsr-xr-x</li>
+<li>rwxr-sr-x</li>
+<li>r--rw---t</li>
+</ul>
+<p>-: r--r-xrw-=456
+-: --xr-xr--=154
+-: r--------=400
+-: --------x=1
+-: rwsr-xr-x=4755
+-: rwxr-sr-x=2755
+-: r--rw---t=1460</p>
+<h2 id="ariketa-4">Ariketa 4</h2>
+<p>Zer gertatuko da hurrengo agindua exekutatzerakoan?
+![alt text]</p>
+<p>1-'Whoami' komandoaren output-a file fitxategian gordeko da, fitxategiaren jabea izateagatik baimenek ez baitidate eragiten</p>
+<p><strong>2- 'Whoami' komandoaren output-a ezin izango da file fitxategian gorde, jabea izan arren, fitxategian esleitutako baimena gailentzen delako</strong></p>
+<h2 id="ariketa-5">Ariketa 5</h2>
+<p>Nola lortuko zenuke &quot;file&quot; artxiboaren baimenak ikusten den moduan aldatzeko?
+![alt text]</p>
+<p>chmod 471</p>
+<h2 id="ariketa-6">Ariketa 6</h2>
+<p>Zortzitarrean zer baimen esleitu beharko dut artxiboak adierazitako baimenak izan ditzan lortzeko?
+![alt text]</p>
+<ul>
+<li>chmod 625</li>
+</ul>
+<h2 id="ariketa-7">Ariketa 7</h2>
+<p>Honako baimen hauek konfiguratuta dituen fitxategi hau ezabatu ahal izango dut?
+![alt text]</p>
+<p><strong>1. Bai</strong>
+2. Ez</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
