@@ -7,6 +7,14 @@
   - [Sticky bit baimena](#sticky-bit-baimena)
   - [SUID eta GUID baimenak](#suid-eta-guid-baimenak)
     - [SUID](#suid)
+- [Ariketak](#ariketak)
+  - [Ariketa 1](#ariketa-1)
+  - [Ariketa 2](#ariketa-2)
+  - [Ariketa 3](#ariketa-3)
+  - [Ariketa 4](#ariketa-4)
+  - [Ariketa 5](#ariketa-5)
+  - [Ariketa 6](#ariketa-6)
+  - [Ariketa 7](#ariketa-7)
 
 ## Fitxategi eta direktorioen baimenak
 
@@ -122,3 +130,153 @@ Ezarri SUID suidfroga.sh fitxategiari.
 
 ```bash
 chmod u+s 
+Alde batetik baimenak S x ed exekuzioa bezala idatzi.
+
+Erabiltzaileen baimentan S badago 4755
+
+Taldeen baimentan s badago 2755
+
+Sticki bita badago "t" 1755
+
+r-srwx--
+570-> 4570
+
+r-rws---
+470-> 2470
+
+r--rwx--t
+470-> 1470
+
+r--rws--t
+470-> 2470-> 3470
+
+## Ezaugarri bereziak - lsattr eta chattr
+
+Ezaugarri bereziak ikusteko `lsattr` agindua erabiliko dugu
+
+Ezaugarri bereziak aldatzeko `chattr` agindua erabiliko dugu
+
+Adibidez, i atributoaren fitxategi bat inmutable bilakatzen dugu. Hau esan nahi du, inork ezin duela aldatu, ez ezabatu, ez root-ek. Ezabatu nahi izatekotan, i atributua kendu beharko genioke lehenengo.
+
+```bash
+chattr +i froga.txt
+lsattr froga.txt
+```
+
+![alt text]
+
+- **u** ezaugarriarekin fitxategi bat ezabatzen dugunean, datuak gordeta gelditzen dira eta bere berreskurapena ahalbidetzen du.
+
+```bash
+chattr +u froga,txt
+```
+
+- **e** ezaugarriarekin fitxategi bat ezabatzen denean, okupatzen zuen memoria zeroarekin berridazten da.
+  
+```bash
+chattr +e froga.txt
+```
+
+- **c** ezaugarriarekin fitxategi bat konprimituta gordeko da.
+```bash
+chattr +c froga.txt
+```
+
+- a ezaugarriarekin fitxategi bati bakarrik gehitu ahal zaizkio gauzak, hau da, ezin da aldatu aurretik zegoen ezer.
+```bash
+chattr +a froga.txt
+```
+
+# Ariketak
+
+## Ariketa 1
+
+lotu dagokion baimenarekin
+
+- 462
+- 123
+- 711
+- 333
+- 161
+- 765
+- 567
+- 101
+- 162
+  
+- rwx--x--x
+- --x-w--wx
+- --x-----x
+- -wx-wx-wx
+- r-xrw-rwx
+- rwxrw-r-x
+- --xrw--w-
+- r--rw--w-
+- --xrw---x
+
+-462=r--rw--w-
+-123=--x-w--wx
+-711=rwx--x--x
+-333=-wx-wx-wx
+-161=--xrw--w-
+-765=-rwxrw-r-x
+-567=r-xrw-rwx
+-101=--x-----x
+-162=--xrw--w-
+
+## Ariketa 2
+
+Zein da fitxategi honen baimenen baimena modu oktalean?
+![alt text]
+
+- r--rw-r--=546
+
+## Ariketa 3
+
+Jarri hurrengo baimenak modu oktalean
+
+- r--r-xrw-
+- --xr-xr--
+- r--------
+- --------x
+- rwsr-xr-x
+- rwxr-sr-x
+- r--rw---t
+
+-: r--r-xrw-=456
+-: --xr-xr--=154
+-: r--------=400
+-: --------x=1
+-: rwsr-xr-x=4755
+-: rwxr-sr-x=2755
+-: r--rw---t=1460
+
+## Ariketa 4
+
+Zer gertatuko da hurrengo agindua exekutatzerakoan?
+![alt text]
+
+1-'Whoami' komandoaren output-a file fitxategian gordeko da, fitxategiaren jabea izateagatik baimenek ez baitidate eragiten
+
+**2- 'Whoami' komandoaren output-a ezin izango da file fitxategian gorde, jabea izan arren, fitxategian esleitutako baimena gailentzen delako**
+
+## Ariketa 5
+
+Nola lortuko zenuke "file" artxiboaren baimenak ikusten den moduan aldatzeko?
+![alt text]
+
+chmod 471
+
+## Ariketa 6
+
+Zortzitarrean zer baimen esleitu beharko dut artxiboak adierazitako baimenak izan ditzan lortzeko?
+![alt text]
+
+- chmod 625
+  
+## Ariketa 7
+
+Honako baimen hauek konfiguratuta dituen fitxategi hau ezabatu ahal izango dut?
+![alt text]
+
+**1. Bai**
+2. Ez
