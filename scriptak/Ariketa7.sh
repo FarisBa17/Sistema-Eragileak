@@ -57,6 +57,6 @@ while true; do
         6) break ;;
         *) echo "Aukera okerra. Mesedez, aukeratu 1 eta 6 arteko zenbaki bat." ;;
     esac
-    read -p "Jarraitu ahal duzu [ENTER] sakatuz..." input
+    read -p "Jarraitu ahal duzu [ENTER] sakatuz..."
     clear
 done
