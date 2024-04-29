@@ -7,6 +7,7 @@
   - [Sticky bit baimena](#sticky-bit-baimena)
   - [SUID eta GUID baimenak](#suid-eta-guid-baimenak)
     - [SUID](#suid)
+  - [Ezaugarri bereziak - lsattr eta chattr](#ezaugarri-bereziak---lsattr-eta-chattr)
 - [Ariketak](#ariketak)
   - [Ariketa 1](#ariketa-1)
   - [Ariketa 2](#ariketa-2)
@@ -24,7 +25,7 @@ Fitxategi eta direktorioen baimenak hurrengo aginduarekin ikusi ditzakegu.
 ls -a
 ```
 
-![Aginduaren emaitza ls -a](image.png)
+![Aginduaren emaitza ls -a](image1.png)
 
 ### Baimen taldeak
 
@@ -32,7 +33,7 @@ ls -a
 **- Talde (group)** : Fitxategi baten jabetza talde bati ere bai dagokio.
 **- Besteak (other)** : Jabeak edo taldekideak ez direnak.
 
-![alt text](image-1.png)
+![alt text](image-2.png)
 
 ### Baimenak esleitzen modu sinbolikoan
 
@@ -50,7 +51,7 @@ Linux-en baimen motak eta `chmod` aginduaren erabilera hainbat motatan azaltzen 
 
 `chmod` aginduaren erabilera hauen laguntzarekin, Linux sistema eragileetan baimenak nola kudeatu ikasten da, fitxategiak eta direktorioak seguruak eta egokiak mantentzeko.
 
-Adibidez, jabeari (user) exekuzio baimena horrela eman ahal izango diogu.
+Adibidez, jabeari (user) exekuzio baimena horrela eman ahal diegu
 ```bash
 chmod u+x froga.txt
 ```
@@ -67,39 +68,39 @@ chmod o-r froga.txt
 
 ### Baimenak modu oktalea
 
-- 0 = 000 = --- = Baimenarik gabe.
-- 1 = 001 = --x = Exekuzioa.
-- 2 = 010 = -w- = Idazteko.
-- 3 = 011 = -wx = Idazteko eta exekutatzeko baimena.
-- 4 = 100 = r- = Irakurtzeko baimena.
-- 5 = 101 = r-w = Irakurtzeko eta exekutatzeko baimena.
-- 6 = 110 = rx- = Irakurtzeko eta idazteko baimena.
-- 7 = 111 = rwx = Baimena guztiak.
+- 0 = 000 = --- = baimenarik gabe
+- 1 = 001 = --x = exekuzioa
+- 2 = 010 = -w- = idazteko
+- 3 = 011 = -wx = idazteko eta exekutatzeko baimena
+- 4 = 100 = r- = irakurtzeko baimena
+- 5 = 101 = r-w = irakurtzeko eta exekutatzeko baimena
+- 6 = 110 = rx- = irakurtzeko eta idazteko baimena
+- 7 = 111 = rwx = baimena guztiak
 
-Adibidez baimen guztiak kentzeko.
+Adibidez baimen guztiak kentzeko
 ```bash
 chmod 000 froga.txt
 ```
 
-Baimen guztiak gehitzeko.
+Baimen guztiak gehitzeko
 ```bash
 chmod 777 froga.txt
 ```
 
-Erabiltzaileari baimen guztiak emateko eta besteei edo taldekidei irakurtzeko eta exekuzio baimena emateko. 
+Erabiltzaileari baimen guztiak emateko eta besteei edo taldekidei irakurtzeko eta exekuzio baimena emateko 
 ```bash
 chmod 755 froga.txt
 ```
 ## Sticky bit baimena
 
-Sticky bita daukan fitxategia edo direktorioa bat bakarrik jabea edo rootek aldatu ahal dio izena edo ezabatu ahal du.
+Sticky bita daukan fitxategia edo direktorioa bat bakarrik jabea edo rootek aldatu ahal dio izena edo ezabatu ahal du 
 
-Sticky bita gehitzeko.
+Sticky bita gehitzeko 
 ```bash
 chmod +t froga.txt
 ```
 
-![alt text](image-2.png)
+![alt text](image-3.png)
 
 ## SUID eta GUID baimenak
 
@@ -111,7 +112,7 @@ SUID aktibatuta dagoenean fitxategi hau exekutatzen duen erabiltzaileak sortzail
 chmod u+s froga.txt
 ```
 
-Sortu exekutable bat root bezala, hurrengo edukiarekin eta izena.
+Sortu exekutable bat root bezala, hurrengo edukiarekin eta izena
 
 suidfroga.sh
 ```bash
@@ -121,15 +122,20 @@ echo exeku
 echo $EUID
 ```
 
-Baimenak esleituko dizkiogu fitxategiari.
+Baimenak esleituko dizkiogu fitxategiari
 ```bash
 chmod 755 suidfroga.sh
 ```
 
-Ezarri SUID suidfroga.sh fitxategiari.
+Ezarri SUID suidfroga.sh fitxategiari
 
 ```bash
-chmod u+s 
+chmod u+s suidfroga.sh
+```
+```bash
+chmod 4755 suidfroga.sh
+```
+
 Alde batetik baimenak S x ed exekuzioa bezala idatzi.
 
 Erabiltzaileen baimentan S badago 4755
@@ -163,7 +169,7 @@ chattr +i froga.txt
 lsattr froga.txt
 ```
 
-![alt text]
+
 
 - **u** ezaugarriarekin fitxategi bat ezabatzen dugunean, datuak gordeta gelditzen dira eta bere berreskurapena ahalbidetzen du.
 
@@ -226,7 +232,7 @@ lotu dagokion baimenarekin
 ## Ariketa 2
 
 Zein da fitxategi honen baimenen baimena modu oktalean?
-![alt text]
+
 
 - r--rw-r--=546
 
@@ -253,7 +259,7 @@ Jarri hurrengo baimenak modu oktalean
 ## Ariketa 4
 
 Zer gertatuko da hurrengo agindua exekutatzerakoan?
-![alt text]
+
 
 1-'Whoami' komandoaren output-a file fitxategian gordeko da, fitxategiaren jabea izateagatik baimenek ez baitidate eragiten
 
@@ -262,21 +268,21 @@ Zer gertatuko da hurrengo agindua exekutatzerakoan?
 ## Ariketa 5
 
 Nola lortuko zenuke "file" artxiboaren baimenak ikusten den moduan aldatzeko?
-![alt text]
+
 
 chmod 471
 
 ## Ariketa 6
 
 Zortzitarrean zer baimen esleitu beharko dut artxiboak adierazitako baimenak izan ditzan lortzeko?
-![alt text]
+
 
 - chmod 625
   
 ## Ariketa 7
 
 Honako baimen hauek konfiguratuta dituen fitxategi hau ezabatu ahal izango dut?
-![alt text]
+
 
 **1. Bai**
-2. Ez
+1. Ez

@@ -9,7 +9,7 @@ read izena2
 
 # Izenak berdinak direla zihurtatu
 if [ "$izena1" = "$izena2" ]; then
-echo "Izenak berdinak dira."
+    echo "Izenak berdinak dira."
 else
-echo "Izenak desberdinak dira."
+    echo "Izenak desberdinak dira."
 fi
