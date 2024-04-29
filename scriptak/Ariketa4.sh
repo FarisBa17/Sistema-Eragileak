@@ -27,9 +27,9 @@ kalkulatu_emaitza() {
 }
 
 # Balioak eskatu erabiltzaileari
-read -p "Sartu lehenengo zenbakia: " zenbaki1
-read -p "Sartu eragiketa (+, -, *, /): " eragiketa
-read -p "Sartu bigarren zenbakia: " zenbaki2
+read -r -p "Sartu lehenengo zenbakia: " zenbaki1
+read -r -p "Sartu eragiketa (+, -, *, /): " eragiketa
+read -r -p "Sartu bigarren zenbakia: " zenbaki2
 
 # Emaitza kalkulatu eta pantailaratuko
-echo "Emaitza: $(kalkulatu_emaitza $zenbaki1 $eragiketa $zenbaki2)"
+echo "Emaitza: $(kalkulatu_emaitza "$zenbaki1" "$eragiketa" "$zenbaki2")"
